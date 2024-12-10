@@ -7,6 +7,7 @@ import time
 import webbrowser
 
 #CODE PAR DORIAN LABASTE EN MAI 2022
+#MIS A JOUR LE 10/12/2024 pour remplacer le getSize en getbox
 
 
 
@@ -28,7 +29,9 @@ def gagneimg(): #AFFICHAGE image fin gagne
 	img = Image.open(pendu_gagne)
 	str1="\"" + str(motfinal)+"\""
 	font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",50)
-	w,h=font.getsize(str1)
+	left, top, right, bottom = font.getbbox(str1)
+	w = right - left
+	h = bottom - top
 	draw = ImageDraw.Draw(img)
 	draw.text(((512-w)/2,(625-h)/2),str1,font=font,fill="white")
 	img.show()
@@ -39,7 +42,10 @@ def perduimg(): #AFFICHAGE image fin perdu
 	img = Image.open(pendu_perdu)
 	str1="\"" + str(motfinal)+"\""
 	font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",50)
-	w,h=font.getsize(str1)
+	left, top, right, bottom = font.getbbox(str1)
+	w = right - left
+	h = bottom - top
+	draw = ImageDraw.Draw(img)
 	draw = ImageDraw.Draw(img)
 	draw.text(((512-w)/2,(625-h)/2),str1,font=font,fill="white")
 	img.show()
